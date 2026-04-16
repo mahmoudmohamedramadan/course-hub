@@ -64,22 +64,7 @@ npm install
 
 ---
 
-### 5. Build assets
-
-Choose your workflow:
-
-```bash
-npm run dev
-```
-
-```bash
-# Production build
-npm run build
-```
-
----
-
-### 6. Run migrations & seed data
+### 5. Run migrations & seed data
 
 ```bash
 php artisan migrate --seed
@@ -93,7 +78,7 @@ This will:
 
 ---
 
-### 7. Serve the application
+### 6. Serve the application
 
 ```bash
 php artisan serve
@@ -125,30 +110,12 @@ This helps you immediately verify:
 
 ---
 
-## ➕ Creating an Admin User
-
-If you skip seeding or need another admin:
-
-```bash
-php artisan make:filament-user
-```
-
----
-
 ## 🧱 Tech Stack
 
 - **Laravel** — backend framework  
 - **Livewire** — dynamic UI without SPA complexity  
 - **Filament** — admin panel  
 - **Tailwind CSS** — styling  
-
----
-
-## 📌 Notes
-
-- Keep `npm run dev` running during development for Vite assets  
-- SQLite is used for simplicity; switch to MySQL/PostgreSQL if needed  
-- YouTube videos are embedded via iframe (no direct video streaming)
 
 ---
 
