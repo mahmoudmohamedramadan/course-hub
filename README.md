@@ -78,13 +78,25 @@ This will:
 
 ---
 
-### 6. Serve the application
+### 6. Run the development servers
+
+For local development you need **two processes**: Laravel (HTTP) and Vite (asset bundling / hot reload).
+
+**1. Start Laravel** (from the project root):
 
 ```bash
 php artisan serve
 ```
 
-Visit: <http://127.0.0.1:8000>
+By default the app is available at **<http://127.0.0.1:8000>** (use the URL shown in the terminal if it differs).
+
+**2. Start Vite** (in a second terminal, same directory):
+
+```bash
+npm run dev
+```
+
+Keep both terminals open while you work. For a production-style asset build instead of the dev server, use `npm run build`.
 
 ---
 
@@ -112,10 +124,11 @@ This helps you immediately verify:
 
 ## 🧱 Tech Stack
 
-- **Laravel** — backend framework  
-- **Livewire** — dynamic UI without SPA complexity  
+- **Laravel 13** — application backend  
+- **Livewire** — interactive UI without a separate SPA  
 - **Filament** — admin panel  
 - **Tailwind CSS** — styling  
+- **Vite** — frontend build tool and dev server  
 
 ---
 
