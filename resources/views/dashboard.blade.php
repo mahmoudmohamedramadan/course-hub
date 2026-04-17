@@ -62,7 +62,7 @@
 
                                 <div class="mt-4">
                                     <a href="{{ route('courses.show', $course) }}"
-                                        class="inline-flex w-full items-center justify-center rounded-lg bg-orange-700 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-600">
+                                        class="inline-flex w-full items-center justify-center rounded-lg bg-green-700 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-600">
                                         {{ __('View course') }}
                                     </a>
                                 </div>
