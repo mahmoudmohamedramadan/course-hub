@@ -18,7 +18,7 @@ class LessonResource extends Resource
 {
     protected static ?string $model = Lesson::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::BookOpen;
 
     protected static ?string $recordTitleAttribute = 'title';
 
@@ -42,9 +42,9 @@ class LessonResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListLessons::route('/'),
+            'index'  => ListLessons::route('/'),
             'create' => CreateLesson::route('/create'),
-            'edit' => EditLesson::route('/{record}/edit'),
+            'edit'   => EditLesson::route('/{record}/edit'),
         ];
     }
 }
