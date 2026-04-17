@@ -8,6 +8,7 @@ use App\Filament\Resources\Levels\Pages\ListLevels;
 use App\Filament\Resources\Levels\Schemas\LevelForm;
 use App\Filament\Resources\Levels\Tables\LevelsTable;
 use App\Models\Level;
+use App\Traits\Filament\HasNavigationBadgeCount;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -17,6 +18,8 @@ use UnitEnum;
 
 class LevelResource extends Resource
 {
+    use HasNavigationBadgeCount;
+
     protected static ?string $model = Level::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::Square3Stack3d;
@@ -26,16 +29,6 @@ class LevelResource extends Resource
     protected static ?int $navigationSort = 6;
 
     protected static ?string $recordTitleAttribute = 'name';
-
-    public static function getNavigationBadge(): ?string
-    {
-        return static::getModel()::count();
-    }
-
-    public static function getNavigationBadgeColor(): ?string
-    {
-        return static::getModel()::count() > 10 ? 'warning' : 'primary';
-    }
 
     public static function form(Schema $schema): Schema
     {

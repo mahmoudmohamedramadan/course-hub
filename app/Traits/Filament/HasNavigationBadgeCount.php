@@ -2,13 +2,18 @@
 
 namespace App\Traits\Filament;
 
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 trait HasNavigationBadgeCount
 {
     public static function getNavigationBadge(): ?string
     {
-        return static::getModel()::count();
+        $key = 'filament:nav-badge:' . static::getFormattedModelLabel() . ':count';
+
+        return Cache::rememberForever($key, function () {
+            return static::getModel()::count();
+        });
     }
 
     public static function getNavigationBadgeColor(): ?string
