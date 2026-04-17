@@ -4,36 +4,36 @@
 
 @layer components {
     .lesson-progress-native {
-        @apply mt-4 h-2 w-full overflow-hidden rounded-full border-0 bg-slate-200;
+        @apply mt-4 h-2 w-full overflow-hidden rounded-full border-0 bg-orange-200;
         -webkit-appearance: none;
         appearance: none;
     }
 
     .dark .lesson-progress-native {
-        @apply bg-slate-700;
+        @apply bg-orange-700;
     }
 
     .lesson-progress-native::-webkit-progress-bar {
-        @apply rounded-full bg-slate-200;
+        @apply rounded-full bg-orange-200;
     }
 
     .dark .lesson-progress-native::-webkit-progress-bar {
-        @apply bg-slate-700;
+        @apply bg-orange-700;
     }
 
     .lesson-progress-native::-webkit-progress-value {
-        @apply rounded-full bg-indigo-600 transition-all duration-300;
+        @apply rounded-full bg-orange-600 transition-all duration-300;
     }
 
     .dark .lesson-progress-native::-webkit-progress-value {
-        @apply bg-indigo-500;
+        @apply bg-orange-500;
     }
 
     .lesson-progress-native::-moz-progress-bar {
-        @apply rounded-full bg-indigo-600 transition-all duration-300;
+        @apply rounded-full bg-orange-600 transition-all duration-300;
     }
 
     .dark .lesson-progress-native::-moz-progress-bar {
-        @apply bg-indigo-500;
+        @apply bg-orange-500;
     }
 }

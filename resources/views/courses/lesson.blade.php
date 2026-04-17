@@ -50,7 +50,7 @@
                 @endif
                 @if ($nextLesson)
                 <a href="{{ route('courses.lessons.show', [$course, $nextLesson]) }}"
-                    class="inline-flex flex-1 items-center justify-center rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-500 sm:flex-none sm:ms-auto">
+                    class="inline-flex flex-1 items-center justify-center rounded-lg bg-orange-700 px-4 py-2 text-sm font-semibold text-white hover:bg-orange-600 sm:flex-none sm:ms-auto">
                     {{ __('Next lesson') }}
                 </a>
                 @endif
