@@ -12,7 +12,7 @@ This causes problems:
 
 ---
 
-### Solution
+## Solution
 
 - Users → `users` table with `web` guard
 - Admins → `admins` table with `admin` guard
