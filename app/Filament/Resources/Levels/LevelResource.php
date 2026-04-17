@@ -13,6 +13,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class LevelResource extends Resource
 {
@@ -20,7 +21,21 @@ class LevelResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::Square3Stack3d;
 
+    protected static string|UnitEnum|null $navigationGroup = 'Courses';
+
+    protected static ?int $navigationSort = 6;
+
     protected static ?string $recordTitleAttribute = 'name';
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
+    public static function getNavigationBadgeColor(): ?string
+    {
+        return static::getModel()::count() > 10 ? 'warning' : 'primary';
+    }
 
     public static function form(Schema $schema): Schema
     {
