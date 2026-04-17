@@ -132,14 +132,6 @@ This helps you immediately verify:
 
 ---
 
-## Architecture & security
-
-Filament admins authenticate against a dedicated **`admins`** table and **`admin`** guard, separate from student **`users`** / **`web`** sessions. That avoids sharing one model/table for two different roles and keeps admin vs. student sessions isolated.
-
-For motivation and step-by-step setup, see **[docs/admin-authentication.md](docs/admin-authentication.md)**.
-
----
-
 ## 📄 License
 
 This project is open-sourced under the MIT license.
