@@ -27,9 +27,10 @@ class LessonForm
                     ->numeric()
                     ->default(0),
                 Toggle::make('is_published')
+                    ->label('Published')
                     ->required(),
                 TextInput::make('video_url')
-                    ->url()
+                    ->activeUrl()
                     ->required(),
                 TextInput::make('sort_order')
                     ->required()

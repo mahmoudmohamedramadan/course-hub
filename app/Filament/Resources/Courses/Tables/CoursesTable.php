@@ -44,14 +44,16 @@ class CoursesTable
                     ->numeric()
                     ->sortable()
                     ->toggleable(),
+                TextColumn::make('target_audience')
+                    ->searchable()
+                    ->toggleable(),
                 IconColumn::make('is_featured')
+                    ->label('Featured')
                     ->boolean()
                     ->toggleable(),
                 IconColumn::make('is_published')
+                    ->label('Published')
                     ->boolean()
-                    ->toggleable(),
-                TextColumn::make('target_audience')
-                    ->searchable()
                     ->toggleable(),
                 TextColumn::make('created_at')
                     ->dateTime()

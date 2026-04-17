@@ -108,7 +108,7 @@ $enrolled = auth()->check() && auth()->user()->isEnrolledIn($course);
             </p>
             <div class="flex flex-wrap gap-3">
                 <a href="{{ route('login') }}"
-                    class="inline-flex rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-500">
+                    class="inline-flex rounded-lg bg-orange-700 px-4 py-2 text-sm font-semibold text-white hover:bg-orange-600">
                     {{ __('Log in') }}
                 </a>
                 @if (Route::has('register'))

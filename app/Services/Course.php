@@ -29,7 +29,7 @@ class Course
      * Get completed lesson IDs for a published course.
      *
      * @param  \App\Models\Course  $course
-     * @return array
+     * @return array|never
      *
      * @throws \Symfony\Component\HttpKernel\Exception\HttpException
      */

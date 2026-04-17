@@ -87,12 +87,12 @@ In `config/auth.php`, register a session guard that points at an `admins` provid
 ```php
 'guards' => [
     'web' => [
-        'driver' => 'session',
+        'driver'   => 'session',
         'provider' => 'users',
     ],
 
     'admin' => [
-        'driver' => 'session',
+        'driver'   => 'session',
         'provider' => 'admins',
     ],
 ],
@@ -100,12 +100,12 @@ In `config/auth.php`, register a session guard that points at an `admins` provid
 'providers' => [
     'users' => [
         'driver' => 'eloquent',
-        'model' => env('AUTH_MODEL', App\Models\User::class),
+        'model'  => env('AUTH_MODEL', App\Models\User::class),
     ],
 
     'admins' => [
         'driver' => 'eloquent',
-        'model' => App\Models\Admin::class,
+        'model'  => App\Models\Admin::class,
     ],
 ],
 ```

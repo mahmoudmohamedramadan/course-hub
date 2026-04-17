@@ -14,8 +14,14 @@ class LessonsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(function ($query) {
+                $query->with([
+                    'course:id,title'
+                ]);
+            })
             ->columns([
-                TextColumn::make('course_id')
+                TextColumn::make('course.title')
+                    ->label('Course Title')
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('title')
@@ -26,6 +32,7 @@ class LessonsTable
                     ->numeric()
                     ->sortable(),
                 IconColumn::make('is_published')
+                    ->label('Published')
                     ->boolean(),
                 TextColumn::make('video_url')
                     ->searchable(),

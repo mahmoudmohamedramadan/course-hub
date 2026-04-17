@@ -18,9 +18,9 @@ class InstructorForm
                 Textarea::make('bio')
                     ->columnSpanFull(),
                 TextInput::make('linkedin_url')
-                    ->url(),
+                    ->activeUrl(),
                 TextInput::make('avatar_url')
-                    ->url(),
+                    ->activeUrl(),
             ]);
     }
 }

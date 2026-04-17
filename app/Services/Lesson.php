@@ -30,7 +30,7 @@ class Lesson
      *
      * @param  \App\Models\Course  $course
      * @param  \App\Models\Lesson  $lesson
-     * @return array
+     * @return array|never
      *
      * @throws \Symfony\Component\HttpKernel\Exception\HttpException
      */
@@ -45,18 +45,14 @@ class Lesson
         }
 
         if (! $lesson->isPublished()) {
-            return redirect()
-                ->route('courses.show', $course)
-                ->with('status', __('This lesson is not available yet.'));
+            abort(HttpStatusCode::NOT_FOUND->value);
         }
 
         /** @var \App\Models\User $user */
         $user = auth('web')->user();
 
         if (! $user->isEnrolledIn($course)) {
-            return redirect()
-                ->route('courses.show', $course)
-                ->with('enrollment_required', true);
+            abort(HttpStatusCode::NOT_FOUND->value);
         }
 
         $this->repository->loadCourseRelations($course);

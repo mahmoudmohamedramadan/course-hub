@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\Courses\Schemas;
 
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
@@ -34,15 +33,17 @@ class CourseForm
                     ->required()
                     ->numeric()
                     ->default(0),
+                TextInput::make('target_audience'),
                 Toggle::make('is_featured')
+                    ->label('Featured')
                     ->required(),
                 Toggle::make('is_published')
+                    ->label('Published')
                     ->required(),
-                TextInput::make('target_audience'),
                 TextInput::make('thumbnail_url')
-                    ->url(),
-                FileUpload::make('cover_image_url')
-                    ->image(),
+                    ->activeUrl(),
+                TextInput::make('cover_image_url')
+                    ->activeUrl(),
             ]);
     }
 }
