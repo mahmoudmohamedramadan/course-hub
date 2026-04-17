@@ -1,6 +1,6 @@
 # Course Hub
 
-> **Filament admin authentication:** this repo keeps Filament admins on a separate **`admins`** table and **`admin`** guard from student **`users`** / **`web`**. Background, security rationale, and setup: **[`docs/FILAMENT_ADMIN_AUTH.md`](docs/FILAMENT_ADMIN_AUTH.md)**.
+> **Filament admin authentication:** Filament admins use a dedicated **`admins`** table and **`admin`** guard, separate from student **`users`** / **`web`**. See **[`docs/FILAMENT_ADMIN_AUTH.md`](docs/FILAMENT_ADMIN_AUTH.md)**.
 
 A Laravel-based Learning Management System featuring a **student-facing course experience** and a **Filament-powered admin panel**.
 
