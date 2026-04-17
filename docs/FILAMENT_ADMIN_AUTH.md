@@ -2,15 +2,20 @@
 
 ## Why this exists
 
-The app originally relied on a single `users` table for authentication. When wiring Filament, **installer-style flows and user-creation tooling** typically persist accounts using whatever Eloquent model your panel is configured to use. If that model is the same as your students (`User`), new “admins” land in `users` alongside normal accounts.
+The app originally used a single users table for authentication. When setting up Filament, creating an admin also stored it in the same table.
 
-That coupling creates real problems:
+This causes problems:
 
-- **Privilege overlap** — the same identity can satisfy both “logged-in student” and “Filament session” expectations unless you add strict, easy-to-miss guards everywhere.
-- **Harder reasoning** — authorization and policies must constantly branch on “is this row an admin or a student?”.
-- **Higher blast radius** — bugs in role checks or route middleware can expose admin capabilities to the wrong account class.
+- **Privilege overlap** — admins and users share the same access
+- **More complex logic** — you must constantly check roles
+- **Security risk** — mistakes can expose admin features to users
 
-This project **splits authentication concerns**: students stay on the `web` guard and `users` table; Filament uses a dedicated **`admins` table** and **`admin` guard**.
+---
+
+### Solution
+
+- Users → `users` table with `web` guard
+- Admins → `admins` table with `admin` guard
 
 ---
 
@@ -28,7 +33,9 @@ Adjust the migration to match the columns you need (at minimum `name`, `email`, 
 
 ## 2. Admin model
 
-Implement Filament’s `FilamentUser` contract (and any optional MFA interfaces your panel uses). Use the same attribute style as `App\Models\User` for fillable / hidden fields:
+Implement Filament’s `FilamentUser` contract (and any optional MFA interfaces your panel uses). Use the same attribute style as `App\Models\User` for fillable / hidden fields.
+
+> For official guidance on implementing **`FilamentUser`** and **`canAccessPanel()`** (who may access the panel), see Filament’s documentation: [Users — Authorizing access to the panel](https://filamentphp.com/docs/5.x/users/overview#authorizing-access-to-the-panel). That page uses `App\Models\User` as an example; apply the same ideas to your **`Admin`** model.
 
 ```php
 <?php

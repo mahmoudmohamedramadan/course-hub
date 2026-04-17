@@ -1,5 +1,7 @@
 # Course Hub
 
+> **Filament admin authentication:** this repo keeps Filament admins on a separate **`admins`** table and **`admin`** guard from student **`users`** / **`web`**. Background, security rationale, and setup: **[`docs/FILAMENT_ADMIN_AUTH.md`](docs/FILAMENT_ADMIN_AUTH.md)**.
+
 A Laravel-based Learning Management System featuring a **student-facing course experience** and a **Filament-powered admin panel**.
 
 - 🎓 Browse courses, enroll, and track lesson progress  
@@ -18,6 +20,7 @@ Follow these steps to get the project running locally.
 
 ```bash
 git clone https://github.com/mahmoudmohamedramadan/course-hub course-hub
+
 cd course-hub
 ```
 
