@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use App\Models\Helpers\LessonHelpers;
 use Illuminate\Support\Str;
+use App\Models\Helpers\LessonHelpers;
 use App\Models\Relations\LessonRelations;
+use App\Traits\Models\UpdatesNavigationBadgeCount;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -21,7 +22,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Lesson extends BaseModel
 {
     /** @use HasFactory<LessonFactory> */
-    use HasFactory, LessonRelations, LessonHelpers;
+    use HasFactory, LessonRelations, LessonHelpers, UpdatesNavigationBadgeCount;
 
     /**
      * The attributes that should be cast.

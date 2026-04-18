@@ -9,10 +9,15 @@ class ViewUser extends ViewRecord
 {
     protected static string $resource = UserResource::class;
 
-    protected function getHeaderActions(): array
+    public function mount(int|string $record): void
     {
-        return [
-            //
-        ];
+        parent::mount($record);
+
+        $this->getRecord()->loadMissing([
+            'enrolledCourses' => fn($query) => $query->orderBy('title'),
+            'lessonProgress'  => fn($query) => $query
+                ->with(['lesson.course'])
+                ->orderByDesc('completed_at'),
+        ]);
     }
 }

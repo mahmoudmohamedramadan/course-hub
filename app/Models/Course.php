@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Support\Str;
 use App\Models\Helpers\CourseHelpers;
 use App\Models\Relations\CourseRelations;
+use App\Traits\Models\UpdatesNavigationBadgeCount;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -26,7 +27,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Course extends BaseModel
 {
     /** @use HasFactory<CourseFactory> */
-    use HasFactory, CourseRelations, CourseHelpers;
+    use HasFactory, CourseRelations, CourseHelpers, UpdatesNavigationBadgeCount;
 
     /**
      * The attributes that should be cast.

@@ -46,4 +46,38 @@ trait UserHelpers
     {
         return $this->enrolledCourses()->whereKey($course->id)->exists();
     }
+
+    /**
+     * Count of completed rows for published lessons in the given course.
+     *
+     * @param \App\Models\Course $course
+     * @return int
+     */
+    public function completedPublishedLessonCountForCourse(Course $course)
+    {
+        return $this->lessonProgress()
+            ->whereHas('lesson', fn($query) => $query
+                ->where('course_id', $course->getKey())
+                ->where('is_published', true))
+            ->count();
+    }
+
+    /**
+     * Human-readable progress for published lessons (e.g. "2 / 5").
+     *
+     * @param \App\Models\Course $course
+     * @return string
+     */
+    public function publishedLessonProgressLabelForCourse(Course $course)
+    {
+        $total = $course->publishedLessonsCount();
+
+        if ($total === 0) {
+            return '0 / 0';
+        }
+
+        $done = $this->completedPublishedLessonCountForCourse($course);
+
+        return "{$done} / {$total}";
+    }
 }

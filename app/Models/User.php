@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use App\Models\Helpers\UserHelpers;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Traits\Models\UpdatesNavigationBadgeCount;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -15,7 +15,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable, UserHelpers;
+    use HasFactory, UserHelpers, UpdatesNavigationBadgeCount;
 
     /**
      * Get the attributes that should be cast.

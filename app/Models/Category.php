@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\Models\UpdatesNavigationBadgeCount;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -13,7 +14,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Category extends Model
 {
     /** @use HasFactory<CategoryFactory> */
-    use HasFactory;
+    use HasFactory, UpdatesNavigationBadgeCount;
 
     /**
      * Get the courses for the category.
