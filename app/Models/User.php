@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Helpers\UserHelpers;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Jobs\SendRegisterationConfirmationMail;
 use App\Traits\Models\UpdatesNavigationBadgeCount;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
@@ -29,6 +30,17 @@ class User extends Authenticatable implements MustVerifyEmail
             'email_verified_at' => 'datetime',
             'password'          => 'hashed',
         ];
+    }
+
+    /**
+     * Send the email verification notification.
+     *
+     * @return void
+     */
+    public function sendEmailVerificationNotification()
+    {
+        SendRegisterationConfirmationMail::dispatch($this)
+            ->afterResponse();
     }
 
     /**
