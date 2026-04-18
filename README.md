@@ -1,6 +1,8 @@
 # Course Hub
 
-> **Filament admin authentication:** Filament admins use a dedicated **`admins`** table and **`admin`** guard, separate from student **`users`** / **`web`**. See **[`docs/FILAMENT_ADMIN_AUTH.md`](docs/FILAMENT_ADMIN_AUTH.md)**.
+> **Filament Admin Authentication** — Uses a dedicated **`admins`** table and **`admin`** guard, isolated from student **`users`** / **`web`**. See **[`docs/FILAMENT_ADMIN_AUTH.md`](docs/FILAMENT_ADMIN_AUTH.md)**.  
+> **Guarded Deletes** — Bulk deletes are blocked when records have **active related data** (e.g. published content or enrollments). See **[`docs/DELETE_ACTIVE_RELATIONS.md`](docs/DELETE_ACTIVE_RELATIONS.md)**.  
+> **Navigation Badges** — Sidebar badges show model counts, cached and updated on create/delete. See **[`docs/FILAMENT_NAVIGATION_BADGE.md`](docs/FILAMENT_NAVIGATION_BADGE.md)**.
 
 A Laravel-based Learning Management System featuring a **student-facing course experience** and a **Filament-powered admin panel**.
 
