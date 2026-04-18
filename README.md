@@ -1,8 +1,10 @@
 # Course Hub
 
-> **Filament Admin Authentication** — Uses a dedicated **`admins`** table and **`admin`** guard, isolated from student **`users`** / **`web`**. See **[`docs/FILAMENT_ADMIN_AUTH.md`](docs/FILAMENT_ADMIN_AUTH.md)**.  
-> **Navigation Badges** — Sidebar badges show model counts, cached and updated on create/delete. See **[`docs/FILAMENT_NAVIGATION_BADGE.md`](docs/FILAMENT_NAVIGATION_BADGE.md)**.
-> **Guarded Deletes** — Bulk deletes are blocked when records have **active related data** (e.g. published content or enrollments). See **[`docs/DELETE_ACTIVE_RELATIONS.md`](docs/DELETE_ACTIVE_RELATIONS.md)**.  
+> [!IMPORTANT]
+>
+> - **Filament Admin Authentication** — Uses a dedicated **`admins`** table and **`admin`** guard. See **[`docs/FILAMENT_ADMIN_AUTH.md`](docs/FILAMENT_ADMIN_AUTH.md)**.
+> - **Navigation Badges** — Cached model counts in the sidebar. See **[`docs/FILAMENT_NAVIGATION_BADGE.md`](docs/FILAMENT_NAVIGATION_BADGE.md)**.
+> - **Guarded Deletes** — Prevents deleting records with active relations. See **[`docs/DELETE_ACTIVE_RELATIONS.md`](docs/DELETE_ACTIVE_RELATIONS.md)**.
 
 A Laravel-based Learning Management System featuring a **student-facing course experience** and a **Filament-powered admin panel**.
 
