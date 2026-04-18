@@ -7,6 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class BaseModel extends Model
 {
     /**
+     * Scope to get published models.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopePublished($query)
+    {
+        return $query->where('is_published', true);
+    }
+
+    /**
      * Check if the lesson is published.
      *
      * @return bool

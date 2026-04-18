@@ -80,7 +80,11 @@ class LmsSeeder extends Seeder
         foreach ($courses->take(3) as $course) {
             $student->enrolledCourses()->syncWithoutDetaching([$course->id]);
 
-            $lessons = $course->lessons()->where('is_published', true)->orderBy('sort_order')->take(2)->get();
+            $lessons = $course->lessons()
+                ->published()
+                ->orderBy('sort_order')
+                ->take(2)
+                ->get();
 
             foreach ($lessons as $lesson) {
                 LessonProgress::updateOrCreate(

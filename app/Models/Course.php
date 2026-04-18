@@ -44,27 +44,6 @@ class Course extends BaseModel
     }
 
     /**
-     * Scope to get published courses.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopePublished($query)
-    {
-        return $query->where('is_published', true);
-    }
-
-    /**
-     * Get the number of published lessons for the course.
-     *
-     * @return int
-     */
-    public function publishedLessonsCount()
-    {
-        return $this->lessons()->where('is_published', true)->count();
-    }
-
-    /**
      * Bootstrap the model and its traits.
      *
      * @return void

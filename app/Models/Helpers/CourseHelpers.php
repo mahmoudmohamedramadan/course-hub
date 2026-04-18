@@ -5,6 +5,16 @@ namespace App\Models\Helpers;
 trait CourseHelpers
 {
     /**
+     * Get the number of published lessons for the course.
+     *
+     * @return int
+     */
+    public function publishedLessonsCount()
+    {
+        return $this->lessons()->published()->count();
+    }
+
+    /**
      * Get the total duration of the course in seconds.
      *
      * @return int

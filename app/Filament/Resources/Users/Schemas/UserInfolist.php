@@ -30,7 +30,8 @@ class UserInfolist
                         TextEntry::make('updated_at')
                             ->dateTime()
                             ->placeholder('—'),
-                    ]),
+                    ])
+                    ->columnSpan(1),
 
                 Section::make('Enrolled courses')
                     ->description('Published lesson completion for each enrolled course.')
@@ -61,7 +62,7 @@ class UserInfolist
 
                                         $livewire = $component->getLivewire();
                                         $user     = $livewire->getRecord();
-                                        
+
                                         if (! $user instanceof User) {
                                             return '—';
                                         }
@@ -69,7 +70,8 @@ class UserInfolist
                                         return $user->publishedLessonProgressLabelForCourse($course);
                                     }),
                             ]),
-                    ]),
+                    ])
+                    ->columnSpanFull(),
 
                 Section::make('Lesson progress')
                     ->description('Completed lessons (newest first).')
@@ -94,7 +96,8 @@ class UserInfolist
                                     ->dateTime()
                                     ->placeholder('—'),
                             ]),
-                    ]),
+                    ])
+                    ->columnSpanFull(),
             ]);
     }
 }

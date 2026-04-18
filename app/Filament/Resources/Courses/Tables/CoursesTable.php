@@ -2,9 +2,11 @@
 
 namespace App\Filament\Resources\Courses\Tables;
 
+use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Notifications\Notification;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -72,7 +74,34 @@ class CoursesTable
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-                    DeleteBulkAction::make(),
+                    DeleteBulkAction::make()
+                        ->before(function ($records, Action $action) {
+                            $shouldHalt = false;
+
+                            foreach ($records as $record) {
+                                $isActiveCourse = $record->where(function ($query) {
+                                    $query
+                                        ->published()
+                                        ->orHas('students');
+                                })->exists();
+
+                                if ($isActiveCourse) {
+                                    Notification::make()
+                                        ->danger()
+                                        ->title('Course cannot be deleted')
+                                        ->body("'{$record->title}' has active enrolled students.")
+                                        ->send();
+
+                                    $shouldHalt = true;
+
+                                    break;
+                                }
+                            }
+
+                            if ($shouldHalt) {
+                                $action->halt();
+                            }
+                        }),
                 ]),
             ]);
     }
