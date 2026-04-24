@@ -15,6 +15,9 @@ class InstructorsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(function ($query) {
+                $query->select(['id', 'name', 'title', 'linkedin_url', 'created_at', 'updated_at']);
+            })
             ->columns([
                 TextColumn::make('name')
                     ->searchable()

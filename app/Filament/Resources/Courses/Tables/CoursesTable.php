@@ -17,11 +17,25 @@ class CoursesTable
     {
         return $table
             ->modifyQueryUsing(function ($query) {
-                $query->with([
-                    'category:id,name',
-                    'level:id,name',
-                    'instructor:id,name',
-                ]);
+                $query
+                    ->select([
+                        'id',
+                        'category_id',
+                        'level_id',
+                        'instructor_id',
+                        'title',
+                        'slug',
+                        'rating',
+                        'target_audience',
+                        'is_featured',
+                        'created_at',
+                        'updated_at'
+                    ])
+                    ->with([
+                        'category:id,name',
+                        'level:id,name',
+                        'instructor:id,name',
+                    ]);
             })
             ->columns([
                 TextColumn::make('category.name')
@@ -37,9 +51,6 @@ class CoursesTable
                     ->searchable()
                     ->toggleable(),
                 TextColumn::make('slug')
-                    ->searchable()
-                    ->toggleable(),
-                TextColumn::make('short_description')
                     ->searchable()
                     ->toggleable(),
                 TextColumn::make('rating')

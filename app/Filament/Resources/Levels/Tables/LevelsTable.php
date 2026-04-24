@@ -15,6 +15,9 @@ class LevelsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(function ($query) {
+                $query->select(['id', 'name', 'slug', 'created_at', 'updated_at']);
+            })
             ->columns([
                 TextColumn::make('name')
                     ->searchable()

@@ -17,9 +17,11 @@ class LessonsTable
     {
         return $table
             ->modifyQueryUsing(function ($query) {
-                $query->with([
-                    'course:id,title'
-                ]);
+                $query
+                    ->select(['id', 'course', 'title', 'slug', 'is_published', 'sort_order', 'created_at', 'updated_at'])
+                    ->with([
+                        'course:id,title'
+                    ]);
             })
             ->columns([
                 TextColumn::make('course.title')
@@ -30,14 +32,9 @@ class LessonsTable
                     ->searchable(),
                 TextColumn::make('slug')
                     ->searchable(),
-                TextColumn::make('video_duration_seconds')
-                    ->numeric()
-                    ->sortable(),
                 IconColumn::make('is_published')
                     ->label('Published')
                     ->boolean(),
-                TextColumn::make('video_url')
-                    ->searchable(),
                 TextColumn::make('sort_order')
                     ->numeric()
                     ->sortable(),
