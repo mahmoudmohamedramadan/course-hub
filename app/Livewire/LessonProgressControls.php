@@ -4,8 +4,8 @@ namespace App\Livewire;
 
 use App\Models\Course;
 use App\Models\Lesson;
-use Illuminate\Contracts\View\View;
 use Livewire\Component;
+use Illuminate\Contracts\View\View;
 
 class LessonProgressControls extends Component
 {

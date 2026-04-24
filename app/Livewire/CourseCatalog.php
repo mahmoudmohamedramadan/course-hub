@@ -2,9 +2,9 @@
 
 namespace App\Livewire;
 
-use App\Models\Category;
 use App\Models\Level;
 use Livewire\Component;
+use App\Models\Category;
 use Livewire\WithPagination;
 use Livewire\Attributes\Url;
 use App\Repositories\Course as CourseRepository;
@@ -44,11 +44,6 @@ class CourseCatalog extends Component
         }
     }
 
-    /**
-     * Render the component.
-     *
-     * @return \Illuminate\Contracts\View\View
-     */
     public function render()
     {
         $courses = $this->repository->search($this->search, $this->categoryId, $this->levelId, $this->sort);
