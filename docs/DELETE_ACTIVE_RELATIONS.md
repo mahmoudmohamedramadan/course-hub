@@ -1,4 +1,4 @@
-# Guarded Deletes (Filament)
+# Filament Guarded Deletes
 
 Bulk deletes can break live data (e.g. active courses or enrolled students).
 To prevent this, `DeleteBulkAction` uses a **`before()` hook** to validate each selected record.

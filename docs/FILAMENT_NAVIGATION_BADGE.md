@@ -1,4 +1,4 @@
-# Filament navigation badge counts
+# Filament Navigation Badge Counts
 
 Sidebar resources can show a **numeric badge** next to the nav label (total rows for that resource).
 

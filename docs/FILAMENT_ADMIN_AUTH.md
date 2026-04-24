@@ -1,4 +1,4 @@
-# Separate admin authentication (Filament)
+# Filament Separate Admin Authentication
 
 ## Why this exists
 
@@ -42,32 +42,14 @@ Implement Filament’s `FilamentUser` contract (and any optional MFA interfaces 
 
 namespace App\Models;
 
-use Filament\Auth\MultiFactor\App\Concerns\InteractsWithAppAuthentication;
-use Filament\Auth\MultiFactor\App\Contracts\HasAppAuthentication;
-use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
-use Illuminate\Database\Eloquent\Attributes\Fillable;
-use Illuminate\Database\Eloquent\Attributes\Hidden;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Auth\MultiFactor\App\Contracts\HasAppAuthentication;
+use Filament\Auth\MultiFactor\App\Concerns\InteractsWithAppAuthentication;
 
-#[Fillable([
-    'name',
-    'email',
-    'password',
-])]
-#[Hidden([
-    'password',
-])]
-class Admin extends Authenticatable implements FilamentUser, HasAppAuthentication
+class Admin extends BaseAuthModel implements FilamentUser, HasAppAuthentication
 {
     use InteractsWithAppAuthentication;
-
-    protected function casts(): array
-    {
-        return [
-            'password' => 'hashed',
-        ];
-    }
 
     public function canAccessPanel(Panel $panel): bool
     {
