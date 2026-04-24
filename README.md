@@ -4,6 +4,7 @@
 >
 > - **Filament Admin Authentication** — Uses a dedicated **`admins`** table and **`admin`** guard. See **[`docs/FILAMENT_ADMIN_AUTH.md`](docs/FILAMENT_ADMIN_AUTH.md)**.
 > - **Navigation Badges** — Cached model counts in the sidebar. See **[`docs/FILAMENT_NAVIGATION_BADGE.md`](docs/FILAMENT_NAVIGATION_BADGE.md)**.
+> - **Badge Cache Key Fix** — Explains the cache-key mismatch and the `BaseModel` / `BaseAuthModel` solution. See **[`docs/FILAMENT_NAV_BADGE_CACHE_KEY.md`](docs/FILAMENT_NAV_BADGE_CACHE_KEY.md)**.
 > - **Guarded Deletes** — Prevents deleting records with active relations. See **[`docs/DELETE_ACTIVE_RELATIONS.md`](docs/DELETE_ACTIVE_RELATIONS.md)**.
 
 A Laravel-based Learning Management System featuring a **student-facing course experience** and a **Filament-powered admin panel**.
