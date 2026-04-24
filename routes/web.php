@@ -9,9 +9,9 @@ use App\Http\Controllers\CourseEnrollmentController;
 
 Route::view('/', 'home')->name('home');
 
-Route::prefix('courses')
+Route::controller(CourseController::class)
+    ->prefix('courses')
     ->name('courses.')
-    ->controller(CourseController::class)
     ->group(function () {
         Route::get('/',         'index')->name('index');
         Route::get('/{course}', 'show')->name('show');
@@ -22,9 +22,9 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
     ->name('dashboard');
 
 Route::middleware('auth')
+    ->controller(ProfileController::class)
     ->prefix('profile')
     ->name('profile.')
-    ->controller(ProfileController::class)
     ->group(function () {
         Route::get('/',    'edit')->name('edit');
         Route::patch('/',  'update')->name('update');
