@@ -6,18 +6,12 @@ use App\Models\Helpers\UserHelpers;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Jobs\SendRegisterationConfirmationMail;
-use App\Traits\Models\UpdatesNavigationBadgeCount;
-use Illuminate\Database\Eloquent\Attributes\Hidden;
-use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
-#[Fillable(['name', 'email', 'password'])]
-#[Hidden(['password', 'remember_token'])]
-class User extends Authenticatable implements MustVerifyEmail
+class User extends BaseAuthModel implements MustVerifyEmail
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable, UserHelpers, UpdatesNavigationBadgeCount;
+    use HasFactory, Notifiable, UserHelpers;
 
     /**
      * Get the attributes that should be cast.

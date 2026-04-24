@@ -11,24 +11,30 @@ trait UpdatesNavigationBadgeCount
      *
      * @return void
      */
-    public static function bootUpdatesNavigationBadgeCount(): void
+    public static function bootUpdatesNavigationBadgeCount()
     {
-        static::created(function ($model) {
-            Cache::increment($model->getNavigationBadgeCacheKey());
-        });
+        static::created(fn() => Cache::increment(static::getNavBadgeCacheKey()));
 
-        static::deleted(function ($model) {
-            Cache::decrement($model->getNavigationBadgeCacheKey());
-        });
+        static::deleted(fn() => Cache::decrement(static::getNavBadgeCacheKey()));
     }
 
     /**
-     * Get the cache key for the navigation badge count.
+     * Get the model's database table name.
      *
      * @return string
      */
-    protected function getNavigationBadgeCacheKey(): string
+    public static function getTableName()
     {
-        return sprintf('filament:nav-badge:%s:count', $this->getTable());
+        return resolve(static::class)->getTable();
+    }
+
+    /**
+     * Get the cache key for the Filament navigation badge count.
+     *
+     * @return string
+     */
+    public static function getNavBadgeCacheKey()
+    {
+        return sprintf('filament:nav-badge:%s:count', static::getTableName());
     }
 }

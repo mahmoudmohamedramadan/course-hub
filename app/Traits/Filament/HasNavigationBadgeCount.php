@@ -3,22 +3,19 @@
 namespace App\Traits\Filament;
 
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Str;
 
 trait HasNavigationBadgeCount
 {
     public static function getNavigationBadge(): ?string
     {
-        $key = 'filament:nav-badge:' . static::getFormattedModelLabel() . ':count';
-
-        return Cache::rememberForever($key, function () {
+        return Cache::rememberForever(static::getNavigationBadgeCacheKey(), function () {
             return static::getModel()::count();
         });
     }
 
     public static function getNavigationBadgeColor(): ?string
     {
-        $count = static::getModel()::count();
+        $count = Cache::get(static::getNavigationBadgeCacheKey());
 
         return match (true) {
             $count <= 50   => 'success',
@@ -30,15 +27,11 @@ trait HasNavigationBadgeCount
 
     public static function getNavigationBadgeTooltip(): ?string
     {
-        return 'The number of ' . static::getFormattedModelLabel();
+        return 'The number of ' . static::getModel()::getTableName();
     }
 
-    protected static function getFormattedModelLabel(): string
+    protected static function getNavigationBadgeCacheKey(): string
     {
-        return Str::of(static::getModel())
-            ->classBasename()
-            ->plural()
-            ->lower()
-            ->toString();
+        return static::getModel()::getNavBadgeCacheKey();
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 
@@ -12,7 +11,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
     'completed_at'
 ])]
 #[Table('lesson_progress')]
-class LessonProgress extends Model
+class LessonProgress extends BaseModel
 {
     /**
      * The attributes that should be cast.

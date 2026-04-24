@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use App\Traits\Models\UpdatesNavigationBadgeCount;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -14,10 +12,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
     'linkedin_url',
     'avatar_url'
 ])]
-class Instructor extends Model
+class Instructor extends BaseModel
 {
     /** @use HasFactory<InstructorFactory> */
-    use HasFactory, UpdatesNavigationBadgeCount;
+    use HasFactory;
 
     /**
      * Get the courses for the instructor.

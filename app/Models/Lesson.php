@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Support\Str;
+use App\Traits\Models\HasPublishing;
 use App\Models\Helpers\LessonHelpers;
 use App\Models\Relations\LessonRelations;
-use App\Traits\Models\UpdatesNavigationBadgeCount;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Lesson extends BaseModel
 {
     /** @use HasFactory<LessonFactory> */
-    use HasFactory, LessonRelations, LessonHelpers, UpdatesNavigationBadgeCount;
+    use HasFactory, LessonRelations, LessonHelpers, HasPublishing;
 
     /**
      * The attributes that should be cast.
@@ -34,6 +34,16 @@ class Lesson extends BaseModel
         return [
             'is_published' => 'boolean',
         ];
+    }
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 
     /**
