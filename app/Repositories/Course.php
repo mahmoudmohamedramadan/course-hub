@@ -74,17 +74,16 @@ class Course
                 'rating',
             ])
             ->with(['category:id,name', 'level:id,slug,name', 'instructor:id,name,avatar_url'])
-            ->when($searchQuery !== '', function ($q) use ($searchQuery) {
-                $term = "%{$searchQuery}%";
-                $q->where(function ($q) use ($term) {
+            ->when(filled($searchQuery), function ($q) use ($searchQuery) {
+                $q->where(function ($q) use ($searchQuery) {
                     $q
-                        ->where('title', 'like', $term)
-                        ->orWhere('short_description', 'like', $term)
-                        ->orWhere('description', 'like', $term);
+                        ->where('title', 'LIKE', "%{$searchQuery}%")
+                        ->orWhere('short_description', 'LIKE', "%{$searchQuery}%")
+                        ->orWhere('description', 'LIKE', "%{$searchQuery}%");
                 });
             })
-            ->when($categoryId !== '', fn($q) => $q->where('category_id', (int) $categoryId))
-            ->when($levelId !== '',    fn($q) => $q->where('level_id', (int) $levelId))
+            ->when(filled($categoryId), fn($q) => $q->where('category_id', (int) $categoryId))
+            ->when(filled($levelId), fn($q) => $q->where('level_id', (int) $levelId))
             ->when($sort === 'newest', fn($q) => $q->latest())
             ->when($sort === 'rating', fn($q) => $q->orderByDesc('rating')->orderByDesc('id'))
             ->paginate(4);
