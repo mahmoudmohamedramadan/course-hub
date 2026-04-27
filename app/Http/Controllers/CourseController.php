@@ -46,11 +46,12 @@ class CourseController
      */
     public function show(Course $course)
     {
-        $completedLessonIds = $this->service->getPublishedCourseCompletedLessonIds($course);
+        $courseProgress = $this->service->getCourseProgress($course);
 
         return view('courses.show', [
             'course'             => $course,
-            'completedLessonIds' => $completedLessonIds,
+            'isEnrolled'         => $courseProgress['isEnrolled'],
+            'completedLessonIds' => $courseProgress['completedLessonIds']->toArray(),
         ]);
     }
 }

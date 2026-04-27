@@ -5,7 +5,7 @@ namespace App\Livewire;
 use App\Models\Course;
 use App\Models\Lesson;
 use Livewire\Component;
-use Illuminate\Contracts\View\View;
+use App\Repositories\Course as CourseRepository;
 
 class LessonSidebar extends Component
 {
@@ -15,19 +15,21 @@ class LessonSidebar extends Component
 
     protected $listeners = ['lesson-progress-updated' => '$refresh'];
 
-    public function render(): View
+    /**
+     * Course repository.
+     *
+     * @var \App\Repositories\Course
+     */
+    protected $repository;
+
+    public function boot()
     {
-        $lessonIds = $this->course->lessons->pluck('id');
+        $this->repository = new CourseRepository;
+    }
 
-        /** @var \App\Models\User $user */
-        $user = auth('web')->user();
-
-        /** \App\Models\User */
-        $completedIds = $user
-            ->lessonProgress()
-            ->whereIn('lesson_id', $lessonIds)
-            ->whereNotNull('completed_at')
-            ->pluck('lesson_id');
+    public function render()
+    {
+        $completedIds = $this->repository->getCourseProgress($this->course)['completedLessonIds'];
 
         return view('livewire.lesson-sidebar', [
             'completedIds' => $completedIds,

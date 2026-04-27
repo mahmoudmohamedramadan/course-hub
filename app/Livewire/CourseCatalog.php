@@ -7,6 +7,7 @@ use Livewire\Component;
 use App\Models\Category;
 use Livewire\WithPagination;
 use Livewire\Attributes\Url;
+use Livewire\Attributes\Computed;
 use App\Repositories\Course as CourseRepository;
 
 class CourseCatalog extends Component
@@ -44,14 +45,26 @@ class CourseCatalog extends Component
         }
     }
 
+    #[Computed(true)]
+    protected function categories()
+    {
+        return Category::orderBy('name')->get(['id', 'name']);
+    }
+
+    #[Computed(true)]
+    protected function levels()
+    {
+        return Level::orderBy('name')->get(['id', 'name']);
+    }
+
     public function render()
     {
         $courses = $this->repository->search($this->search, $this->categoryId, $this->levelId, $this->sort);
 
         return view('livewire.course-catalog', [
             'courses'    => $courses,
-            'categories' => Category::orderBy('name')->get(['id', 'name']),
-            'levels'     => Level::orderBy('name')->get(['id', 'name']),
+            'categories' => $this->categories,
+            'levels'     => $this->levels,
         ]);
     }
 }

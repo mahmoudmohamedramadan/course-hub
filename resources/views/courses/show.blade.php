@@ -4,7 +4,7 @@
 
 @section('content')
 @php
-$enrolled = auth()->check() && auth()->user()->isEnrolledIn($course);
+$enrolled = $isEnrolled;
 @endphp
 
 @if (session('status'))

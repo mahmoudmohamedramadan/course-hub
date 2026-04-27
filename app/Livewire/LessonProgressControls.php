@@ -5,7 +5,7 @@ namespace App\Livewire;
 use App\Models\Course;
 use App\Models\Lesson;
 use Livewire\Component;
-use Illuminate\Contracts\View\View;
+use Livewire\Attributes\Computed;
 
 class LessonProgressControls extends Component
 {
@@ -21,7 +21,7 @@ class LessonProgressControls extends Component
 
     protected $user;
 
-    public function mount(): void
+    public function mount()
     {
         $this->refreshStats();
     }
@@ -32,7 +32,7 @@ class LessonProgressControls extends Component
         $this->user = auth('web')->user();
     }
 
-    public function markComplete(): void
+    public function markComplete()
     {
         $this->user->lessonProgress()->updateOrCreate(
             ['lesson_id' => $this->lesson->id],
@@ -43,11 +43,17 @@ class LessonProgressControls extends Component
         $this->dispatch('lesson-progress-updated');
     }
 
-    private function refreshStats(): void
+    #[Computed(true)]
+    protected function publishedLessonIds()
     {
-        $publishedLessonIds = $this->course->lessons()
-            ->where('is_published', true)
+        return $this->course->lessons()
+            ->published()
             ->pluck('id');
+    }
+
+    private function refreshStats()
+    {
+        $publishedLessonIds = $this->publishedLessonIds;
 
         $this->totalLessons = $publishedLessonIds->count();
         $this->completedCount = $this->user->lessonProgress()
@@ -60,7 +66,7 @@ class LessonProgressControls extends Component
             ->exists();
     }
 
-    public function render(): View
+    public function render()
     {
         return view('livewire.lesson-progress-controls');
     }

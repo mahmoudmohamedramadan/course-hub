@@ -48,15 +48,6 @@ class Lesson
             abort(HttpStatusCode::NOT_FOUND->value);
         }
 
-        /** @var \App\Models\User $user */
-        $user = auth('web')->user();
-
-        if (! $user->isEnrolledIn($course)) {
-            abort(HttpStatusCode::NOT_FOUND->value);
-        }
-
-        $this->repository->loadCourseRelations($course);
-
         return $this->repository->getAdjacentPublishedLessons($course, $lesson);
     }
 }

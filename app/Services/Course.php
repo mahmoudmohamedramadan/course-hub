@@ -33,14 +33,12 @@ class Course
      *
      * @throws \Symfony\Component\HttpKernel\Exception\HttpException
      */
-    public function getPublishedCourseCompletedLessonIds($course)
+    public function getCourseProgress($course)
     {
         if (! $course->isPublished()) {
             abort(HttpStatusCode::NOT_FOUND->value);
         }
 
-        $this->repository->loadRelations($course);
-
-        return $this->repository->getCompletedLessonIds($course);
+        return $this->repository->getCourseProgress($course);
     }
 }
